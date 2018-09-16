@@ -6,6 +6,7 @@ numpy==1.14.5
 opencv-python==3.4.2.17
 pandas==0.23.3
 Pillow==5.2.0
+pycrypto==2.6.1
 python-dateutil==2.7.3
 pytz==2018.5
 six==1.11.0

@@ -6,7 +6,7 @@ import socket
 import sys
 import time
 
-from Crypto.Cipher import AES
+from Crypto.Cipher import AES  # package is pycrypto
 from binascii import b2a_hex, a2b_hex
 
 
@@ -72,7 +72,10 @@ if __name__ == '__main__':
     server维护一个有效时间戳，初始化为server开始运行-100s，server解密消息后先检查时间戳，
     若消息时间戳≤有效时间戳直接抛弃，(过大是否要检查并抛弃?)
     时间没问题，则用该时间更新有效时间戳，以保证每个消息包只能使用一次'''
-    # client = Client('192.168.0.108:8002', 'password')
-    client = Client('127.0.0.1:8002', 'password')
+    if sys.argv[1] != 'open' and sys.argv[1] != 'close':
+        print("usage: /path/to/tcp_client.py open|close")
+        raise Exception('unknown command')
+    # client = Client('127.0.0.1:8002', 'password')
+    client = Client('172.16.0.35:8002', 'password')
     # client = Client('10.42.0.186:8002', 'password')
     client.send_command(sys.argv[1])
